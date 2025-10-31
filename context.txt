@@ -15,3 +15,7 @@ A ideia deste trabalho é que vocês montem um projeto (devidamente hospedado em
 7. Instruções e organização do README, com prints de funcionamento (2 pts)
 
 P.S.: O mapa é escolhido por vocês, mas tem que ter ao menos 3 obstáculos. Com isso, os testes de vértices iniciais e finais são escolhidos por vocês também
+
+1, 2, 4 e 6 -> Larissa
+3 e 5 -> Otávio
+7 -> Ambos
