@@ -7,11 +7,11 @@ class Vertex:
         self.y = float(y)
         self.coords = (self.x, self.y)                      #armazenando como tupla para facilitar o cálculo de distância
 
-    def distance(self, outro_vertex):
-        return math.dist(self.coords, outro_vertex.coords)  #o custo da aresta é a distância entre os vértices
+    def distance(self, another_vertex):
+        return math.dist(self.coords, another_vertex.coords)  #o custo da aresta é a distância entre os vértices
 
     def __repr__(self):
-        return f"vertex({self.x}, {self.y})"                #representação em string
+        return f"Vértice({self.x}, {self.y})"                #representação em string
 
 class Obstacle:                                             #armazena uma lista de quinas (vertice) formando o poligono
     def __init__(self):
@@ -33,7 +33,7 @@ class Map:                                                  #armazena tudo, pont
     def __repr__(self):                                     #representação em string
         return f"Mapa(Start: {self.q_start}, Goal: {self.q_goal}, Obstáculos: {len(self.obstacles)})"
 
-def ler_mapa_de_arquivo(archive):
+def read_file_map(archive):
     map = Map()
     clean_lines = []
     regex_ignore = re.compile(r"^\s*#.*$|^\s*}?$|^\s*$")
@@ -71,9 +71,9 @@ def ler_mapa_de_arquivo(archive):
         for _ in range(num_obstacles):                      #loop pela quantidade de obstaculos
             obstacle = Obstacle()
             
-            num_quinas = int(next(iter_line))               #NUMERO DE QUINA DO OBSTACULO
+            num_corner = int(next(iter_line))               #NUMERO DE QUINA DO OBSTACULO
             
-            for _ in range(num_quinas):                     #loop pelas quinas
+            for _ in range(num_corner):                     #loop pelas quinas
                 x, y = next(iter_line).split(',')
                 v = Vertex(x, y)                            #QUINA
                 obstacle.add_vertex(v)
@@ -92,7 +92,7 @@ def ler_mapa_de_arquivo(archive):
 
 if __name__ == "__main__":
     archive = "Mapas\\ArquivoMapa.py"
-    generated_map = ler_mapa_de_arquivo(archive)
+    generated_map = read_file_map(archive)
 
     if generated_map:
         print("Mapa carregado com sucesso!")
