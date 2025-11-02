@@ -1,5 +1,6 @@
 from Mapas.Leitura import read_file_map
 from Mapas.GrafoVisibilidade import create_visibility_graph
+from Algoritmos.minimum_generator_tree import minimum_generator_tree, print_mgt
 
 if __name__ == "__main__":
     archive = "Mapas\\ArquivoMapa.py"
@@ -20,6 +21,8 @@ if __name__ == "__main__":
         print(f"\n--- Total de Obstáculos: {len(generated_map.obstacles)} ---")
         
         visibility_graph = create_visibility_graph(generated_map)
+        mgt = minimum_generator_tree(visibility_graph, generated_map.q_start)
+        print_mgt(mgt)
         #deixei comentado o print pq tava ruim, mas ainda nao sei como melhorar
         # print("\n--- Grafo de visibilidade (amostra) ---")
         
