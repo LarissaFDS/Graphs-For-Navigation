@@ -1,5 +1,6 @@
 import math
 import re
+from shapely.geometry import Polygon                        #pra classe obstacle
 
 class Vertex:
     def __init__(self, x, y):
@@ -8,17 +9,33 @@ class Vertex:
         self.coords = (self.x, self.y)                      #armazenando como tupla para facilitar o cálculo de distância
 
     def distance(self, another_vertex):
-        return math.dist(self.coords, another_vertex.coords)  #o custo da aresta é a distância entre os vértices
+        return math.dist(self.coords, another_vertex.coords)#o custo da aresta é a distância entre os vértices
 
     def __repr__(self):
-        return f"Vértice({self.x}, {self.y})"                #representação em string
+        return f"Vértice({self.x}, {self.y})"               #representação em string
 
+    def __hash__(self):                                     #paara o grafo (chave de dicionario)
+        return hash(self.coords)
+
+    def __eq__(self, other):
+        return self.coords == other.coords
+    
 class Obstacle:                                             #armazena uma lista de quinas (vertice) formando o poligono
     def __init__(self):
         self.vertexs = []
+        self._polygon = None
 
     def add_vertex(self, vertex):
         self.vertexs.append(vertex)
+        
+    def get_polygon_shapely(self):
+        if not self._polygon:
+            corner_coods = [v.coords for v in self.vertexs]
+            
+            if len(corner_coods) >= 3:
+                self._polygon = Polygon(corner_coods)
+                
+        return self._polygon
 
     def __repr__(self):
         return f"Obstáculo(Vértices: {len(self.vertexs)})"  #representação em string
@@ -54,7 +71,6 @@ def read_file_map(archive):
             if not regex_ignore.match(clean_line):
                 clean_lines.append(clean_line)
 
-    
     try:                                                    #iterador para "consumir" as linhas limpas uma a uma
         iter_line = iter(clean_lines)
         
@@ -88,27 +104,3 @@ def read_file_map(archive):
         return None
 
     return map
-
-
-if __name__ == "__main__":
-    archive = "Mapas\\ArquivoMapa.py"
-    generated_map = read_file_map(archive)
-
-    if generated_map:
-        print("Mapa carregado com sucesso!")
-        print(generated_map)
-        
-        print("\n--- Ponto Inicial ---")
-        print(generated_map.q_start)
-        
-        print("\n--- Ponto Final ---")
-        print(generated_map.q_goal)
-        
-        print(f"\n--- Total de Obstáculos: {len(generated_map.obstacles)} ---")
-        
-        if generated_map.obstacles:                         #imprime os vertices do primeiro obstaculo como exemplo
-            print("Vértices do primeiro obstáculo:")
-            for v in generated_map.obstacles[0].vertexs:
-                print(f"  {v}")
-                
-        print(f"\n--- Total de Vértices (Nós do Grafo): {len(generated_map.all_vertexs)} ---")
