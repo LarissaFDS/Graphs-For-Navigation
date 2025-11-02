@@ -1,6 +1,7 @@
 from Mapas.Leitura import read_file_map
 from Mapas.GrafoVisibilidade import create_visibility_graph
 from Mapas.Plotar import plotar_mapa_completo, plotar_apenas_obstaculos, plotar_comparacao
+
 from Algoritmos.minimum_generator_tree import minimum_generator_tree, print_mgt
 from Algoritmos.search_in_tree import search_in_tree, print_path
 
@@ -41,13 +42,26 @@ if __name__ == "__main__":
         # else:
         #     print(f"Ponto inicial {v_start} não tem vizinhos visíveis.")
         
-    plotar_apenas_obstaculos(generated_map, salvar=True, nome_arquivo='mapa_obstaculos.png')
+    plotar_apenas_obstaculos(
+        mapa=generated_map, 
+        salvar=True, 
+        nome_arquivo='mapa_obstaculos.png'
+    )
     
     plotar_mapa_completo(
         mapa=generated_map,
         grafo=visibility_graph,
-        #arvore=,        
-        #caminho=,
+        arvore=mgt,        
+        caminho=path_dots,
         salvar=True,
         nome_arquivo='mapa_completo.png'
+    )
+    
+    plotar_comparacao(
+        mapa=generated_map,
+        grafo=visibility_graph,
+        arvore=mgt,        
+        caminho=path_dots,
+        salvar=True,
+        nome_arquivo='mapa_comparacao.png'
     )

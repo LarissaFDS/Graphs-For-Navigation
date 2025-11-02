@@ -21,7 +21,7 @@ def search_in_tree(Tree: dict, start_node: Vertex, end_node: Vertex, path_dots, 
 
     # Se não encontrou caminho a partir daqui, remove o nó do caminho
     # Comentando isso temos todas as passagens do robô
-    #path_dots.pop()
+    path_dots.pop()
     return None
 
 
