@@ -50,6 +50,14 @@ class Map:                                                  #armazena tudo, pont
     def __repr__(self):                                     #representação em string
         return f"Mapa(Start: {self.q_start}, Goal: {self.q_goal}, Obstáculos: {len(self.obstacles)})"
 
+    def get_bounds(self):                                   #saber limite do mapa na plotagem
+        if not self.all_vertexs:
+            return (0, 0, 0, 0)
+        
+        xs = [v.x for v in self.all_vertexs]
+        ys = [v.y for v in self.all_vertexs]
+        return (min(xs), min(ys), max(xs), max(ys))         #retorno o limite minimo/maximo de x e y, para ajustar o zoom no plot
+    
 def read_file_map(archive):
     map = Map()
     clean_lines = []
