@@ -1,6 +1,7 @@
 from Mapas.Leitura import read_file_map
 from Mapas.GrafoVisibilidade import create_visibility_graph
 from Algoritmos.minimum_generator_tree import minimum_generator_tree, print_mgt
+from Algoritmos.search_in_tree import search_in_tree, print_path
 
 if __name__ == "__main__":
     archive = "Mapas\\ArquivoMapa.py"
@@ -23,6 +24,11 @@ if __name__ == "__main__":
         visibility_graph = create_visibility_graph(generated_map)
         mgt = minimum_generator_tree(visibility_graph, generated_map.q_start)
         print_mgt(mgt)
+        path_dots = []
+        #path_dots.append(generated_map.q_start)
+        cost = search_in_tree(mgt, generated_map.q_start, generated_map.q_goal, path_dots)
+        print_path(path_dots)
+        print(f"Custo total do caminho: {cost:.2f}")
         #deixei comentado o print pq tava ruim, mas ainda nao sei como melhorar
         # print("\n--- Grafo de visibilidade (amostra) ---")
         
