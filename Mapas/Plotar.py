@@ -3,10 +3,10 @@ from matplotlib.patches import Polygon as MplPolygon
 import matplotlib.patches as mpatches
 
 #cores definidas para cada coisinah 
-cor_grafo = 'plum'
-cor_arvore = 'cyan'
-cor_caminho = 'orange'
-cor_obstaculo = 'black'
+cor_grafo = 'gold'
+cor_arvore = "crimson"
+cor_caminho = 'green'
+cor_obstaculo = 'grey'
 cor_padrao = 'black'   
     
 def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, nome_arquivo='mapa.png'): 
@@ -25,7 +25,7 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
         if polygon and polygon.is_valid:
             coords = list(polygon.exterior.coords)
             
-            patch = MplPolygon(coords, facecolor='black', edgecolor='darkred', linewidth=2.5, alpha=0.6,
+            patch = MplPolygon(coords, facecolor=cor_obstaculo, edgecolor='black', linewidth=2.5, alpha=0.6,
                              label='Obstáculos' if i == 0 else '')      #cria poligono matplotlib
             ax.add_patch(patch)
     
@@ -50,7 +50,7 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
                 
                 if edge not in edges_plotted:
                     ax.plot([vertex.x, neighbor.x], [vertex.y, neighbor.y],
-                           color=cor_arvore, linewidth=1.5, alpha=0.6, zorder=6)
+                           color=cor_arvore, linewidth=1.8, alpha=0.6, zorder=6)
                     edges_plotted.add(edge)
     
     #desenha caminho
@@ -59,15 +59,14 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
         caminho_y = [v.y for v in caminho]
         ax.plot(caminho_x, caminho_y, 
                color=cor_caminho, linewidth=4, marker='o', markersize=8, 
-               markerfacecolor='gold', markeredgecolor='darkorange',
-               markeredgewidth=2, alpha=0.9, zorder=5)
+               markerfacecolor='green', markeredgewidth=2, alpha=0.9, zorder=5)
         
         #numera pontos do cmainho 
         for i, v in enumerate(caminho):                                 
             if v != mapa.q_start and v != mapa.q_goal:
                 ax.annotate(f'{i}', 
                           xy=(v.x, v.y), xytext=(5, 5), textcoords='offset points',
-                          fontsize=8, color='darkorange', fontweight='bold')
+                          fontsize=8, color='darkgreen', fontweight='bold')
     
     #desenha quina dos obstaculos
     for obs in mapa.obstacles:                                          
@@ -100,7 +99,7 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
     y_pos = 0.98
     y_step = 0.04
     
-    bbox_props = dict(boxstyle ='round', facecolor='wheat', alpha=0.8, edgecolor='wheat')
+    bbox_props = dict(boxstyle ='round', facecolor='white', alpha=0.8, edgecolor='wheat')
 
     texto_vertices = f"Vértices: {len(mapa.all_vertexs)}"
     ax.text(x_pos, y_pos, texto_vertices,
@@ -158,7 +157,7 @@ def plotar_apenas_obstaculos(mapa, salvar=False, nome_arquivo='obstaculos.png'):
         if polygon and polygon.is_valid:
             coords = list(polygon.exterior.coords)
             patch = MplPolygon(coords, 
-                             facecolor=cor_obstaculo, edgecolor='darkred', 
+                             facecolor=cor_obstaculo, edgecolor='black', 
                              linewidth=2, alpha=0.7)
             ax.add_patch(patch)
             
@@ -208,7 +207,7 @@ def plotar_comparacao(mapa, grafo, arvore, caminho, salvar=False, nome_arquivo='
             if polygon and polygon.is_valid:
                 coords = list(polygon.exterior.coords)
                 patch = MplPolygon(coords, facecolor=cor_obstaculo, 
-                                 edgecolor='darkred', linewidth=2, alpha=0.6)
+                                 edgecolor='black', linewidth=2, alpha=0.6)
                 ax.add_patch(patch)
                 
     #apenas obstáculos
@@ -253,7 +252,7 @@ def plotar_comparacao(mapa, grafo, arvore, caminho, salvar=False, nome_arquivo='
         caminho_y = [v.y for v in caminho]
         axes[1, 1].plot(caminho_x, caminho_y, 'o-', 
                        color=cor_caminho, linewidth=4, 
-                       markersize=8, markerfacecolor='gold')
+                       markersize=8, markerfacecolor='green')
     axes[1, 1].plot(mapa.q_start.x, mapa.q_start.y, 'rs', markersize=12)
     axes[1, 1].plot(mapa.q_goal.x, mapa.q_goal.y, 'g*', markersize=15)
     
