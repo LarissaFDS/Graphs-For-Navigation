@@ -12,7 +12,7 @@ class Vertex:
         return math.dist(self.coords, another_vertex.coords)#o custo da aresta é a distância entre os vértices
 
     def __repr__(self):
-        return f"Vértice({self.x}, {self.y})"               #representação em string
+        return f"Vertex({self.x}, {self.y})"               #representação em string
 
     def __hash__(self):                                     #paara o grafo (chave de dicionario)
         return hash(self.coords)
@@ -38,7 +38,7 @@ class Obstacle:                                             #armazena uma lista 
         return self._polygon
 
     def __repr__(self):
-        return f"Obstáculo(Vértices: {len(self.vertexs)})"  #representação em string
+        return f"Obstacle(Vertices: {len(self.vertexs)})"  #representação em string
 
 class Map:                                                  #armazena tudo, ponto de inicio e fim, e a lista de Obstaculo
     def __init__(self):
@@ -48,7 +48,7 @@ class Map:                                                  #armazena tudo, pont
         self.all_vertexs = []                               #lista unica com TODOS os vertices. USAR NO GRAFO DE VISIBILIDADE
 
     def __repr__(self):                                     #representação em string
-        return f"Mapa(Start: {self.q_start}, Goal: {self.q_goal}, Obstáculos: {len(self.obstacles)})"
+        return f"Map(Start: {self.q_start}, Goal: {self.q_goal}, Obstacles: {len(self.obstacles)})"
 
     def get_bounds(self):                                   #saber limite do mapa na plotagem
         if not self.all_vertexs:
@@ -106,9 +106,9 @@ def read_file_map(archive):
             map.obstacles.append(obstacle)
             
     except StopIteration:
-        print("Erro: O arquivo de mapa terminou inesperadamente.")
+        print("Error: Map file ended unexpectedly.")
     except Exception as e:
-        print(f"Erro ao processar o arquivo de mapa: {e}")
+        print(f"Error processing map file: {e}")
         return None
 
     return map
