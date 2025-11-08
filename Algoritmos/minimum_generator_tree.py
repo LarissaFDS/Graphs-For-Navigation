@@ -32,7 +32,7 @@ def minimum_generator_tree(visibility_graph : dict, start_vertex : Vertex) -> di
     return tree
 
 def print_mgt(tree: dict):
-    print("\nÁrvore Geradora Mínima:")
+    print("\nMinimum Generator Tree:")
     for vertex, edges in tree.items():
         for neighbor, cost in edges:
-            print(f"{vertex} -- {neighbor} (custo: {cost:.2f})")
+            print(f"{vertex} -- {neighbor} (cost: {cost:.2f})")

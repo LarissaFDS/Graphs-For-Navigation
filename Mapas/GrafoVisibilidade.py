@@ -4,7 +4,7 @@ from shapely.geometry import LineString
 from .Leitura import Map, Vertex, Obstacle
 
 def create_visibility_graph(mapa: Map):
-    print("\nIniciando a criação do grafo de visibilidade")
+    print("\nInitializing visibility graph...")
     
     vertexs = mapa.all_vertexs                                                  #pega todos os vertices do mapa
     obstacles_polygon = [obs.get_polygon_shapely() for obs in mapa.obstacles]   #converte os obstaculos em poligonos do shapely
@@ -31,6 +31,6 @@ def create_visibility_graph(mapa: Map):
                 
             graph[v1].append((v2, cost))
             graph[v2].append((v1, cost))
-    
-    print(f"Grafo de visibilidade criado com {len(graph)} nós.")
+
+    print(f"Visibility graph created with {len(graph)} nodes.")
     return graph

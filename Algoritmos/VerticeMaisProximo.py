@@ -3,7 +3,7 @@ import math
 
 def vertice_mais_proximo(posicao: tuple, arvore: dict) -> Vertex:
     if not arvore:
-        raise ValueError("Árvore vazia!")
+        raise ValueError("Empty tree!")
     
     x_pos, y_pos = posicao
     min_distancia = float('inf')
@@ -23,12 +23,12 @@ def ler_posicao_usuario(mensagem: str) -> tuple:
     print(mensagem)
     while True:
         try:
-            entrada = input("Digite as coordenadas no formato 'x,y' (ex: 25,15): ")
+            entrada = input("Type the coordinates in the format 'x,y' (ex: 25,15): ")
             x, y = map(float, entrada.strip().split(','))
             return (x, y)
         except ValueError:
-            print("Formato inválido! Use o formato 'x,y' com números.")
-            
+            print("Invalid format! Use the format 'x,y' with numbers.")
+
             
             
 '''

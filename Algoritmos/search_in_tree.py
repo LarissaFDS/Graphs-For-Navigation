@@ -19,15 +19,14 @@ def search_in_tree(Tree: dict, start_node: Vertex, end_node: Vertex, path_dots, 
             if sub_path_cost is not None:
                 return cost + sub_path_cost
 
-    # Se não encontrou caminho a partir daqui, remove o nó do caminho
-    # Comentando isso temos todas as passagens do robô
+    # Se não encontrou caminho a partir daqui, remove o nó do caminho para evitar passar por cima de obstáculos
     path_dots.pop()
     return None
 
 
 
 def print_path(path_dots):
-    print("\nCaminho encontrado na Árvore Geradora Mínima:")
+    print("\nPath found in Minimum Spanning Tree:")
     for vertex in path_dots:
         print(f"{vertex} -> ", end="")
-    print("Fim")
+    print("End")
