@@ -250,7 +250,7 @@ def plotar_comparacao(mapa, grafo, arvore, caminho, salvar=False, nome_arquivo='
     axes[1, 0].plot(mapa.q_goal.x, mapa.q_goal.y, 'g*', markersize=15)
     
     #caminho final
-    setup_ax(axes[1, 1], '4. Caminho Final')                            
+    setup_ax(axes[1, 1], '4. Caminho final')                            
     draw_obstacles(axes[1, 1])
     if caminho and len(caminho) > 1:
         caminho_x = [v.x for v in caminho]
