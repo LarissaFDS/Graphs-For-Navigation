@@ -94,9 +94,11 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
     ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
     ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
     
-    ax.legend(loc='upper right', fontsize=10, framealpha=0.9, edgecolor='black')
+    ax.invert_yaxis()                                                                                           #arruma o coisa contrario
+    
+    ax.legend(loc='best', fontsize=10, framealpha=0.9, edgecolor='black')
     x_pos = 0.02
-    y_pos = 0.98
+    y_pos = 0.03
     y_step = 0.04
     
     bbox_props = dict(boxstyle ='round', facecolor='white', alpha=0.8, edgecolor='wheat')
@@ -104,14 +106,14 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
     texto_vertices = f"Vértices: {len(mapa.all_vertexs)}"
     ax.text(x_pos, y_pos, texto_vertices,
             transform=ax.transAxes, fontsize=10, verticalalignment='top', color=cor_padrao, bbox=bbox_props)
-    y_pos -= y_step
+    y_pos += y_step
     
     texto_obstaculos = f"Obstáculos: {len(mapa.obstacles)}"
     ax.text(x_pos, y_pos, texto_obstaculos,
             transform=ax.transAxes, fontsize=10, verticalalignment='top', color=cor_padrao, bbox=bbox_props)
     
     if grafo:
-        y_pos -= y_step
+        y_pos += y_step
         num_edges = sum(len(neighbors) for neighbors in grafo.values()) // 2
         texto_arestas = f"Arestas no grafo: {num_edges}"
         
@@ -119,14 +121,14 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
                transform=ax.transAxes, fontsize=10, verticalalignment='top', color=cor_grafo, fontweight='bold', bbox=bbox_props)
      
     if arvore:
-        y_pos -= y_step
+        y_pos += y_step
         num_edges_arvore = sum(len(neighbors) for neighbors in arvore.values()) // 2
         texto_arvore = f"Arestas na MST: {num_edges_arvore}"
         ax.text(x_pos, y_pos, texto_arvore,
                transform=ax.transAxes, fontsize=10, verticalalignment='top', color=cor_arvore, fontweight='bold', bbox=bbox_props)
     
     if caminho:
-        y_pos -= y_step
+        y_pos += y_step
         dist_total = sum(caminho[i].distance(caminho[i+1])               #calcula a dist
                         for i in range(len(caminho)-1))
         texto_caminho = f"Distância do caminho: {dist_total:.2f}"
@@ -179,6 +181,8 @@ def plotar_apenas_obstaculos(mapa, salvar=False, nome_arquivo='obstaculos.png'):
     ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
     ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
     
+    ax.invert_yaxis()                                                   #arruma o coisa contrario
+    
     plt.tight_layout()
     
     if salvar:
@@ -200,7 +204,8 @@ def plotar_comparacao(mapa, grafo, arvore, caminho, salvar=False, nome_arquivo='
         margin = 10
         ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
         ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
-    
+        ax.invert_yaxis()                                               #arruma o coisa contrario
+        
     def draw_obstacles(ax):
         for obs in mapa.obstacles:
             polygon = obs.get_polygon_shapely()
