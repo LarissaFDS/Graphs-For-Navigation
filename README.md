@@ -6,7 +6,7 @@ The solution implements a complete pipeline that:
 - Reads a map file containing obstacles.
 - Builds a Visibility Graph between all vertices (start/goal and obstacles corners).
 - Calculates the Minimum Spanning Tree (MST) of this graph using Prim's Algorithm.
-- Performs a Recursive Tree Search to find the lowest-cost path.
+- Performs a Recursive Tree Search to find the path.
 - Allows the user to set custom start and goal points, fiding the nearest vertices on the tree.
 - Plots visualizations of all stages of the process.
 
