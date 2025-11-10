@@ -1,7 +1,7 @@
 # Practice 2 - Graphs For Navigation
 Authors: Otávio Joshua Costa Brandão Menezes and Larissa Ferreira Dias de Souza
 
-This project was devoloped by for the Graphs course. The objective is to apply graph theory concepts, such as visibility graphs and minimum spanning trees, to implement a robot navigation pipeline in a 2D enviroment with obstacles.
+This project was devoloped for the Graphs course. The objective is to apply graph theory concepts, such as visibility graphs and minimum spanning trees, to implement a robot navigation pipeline in a 2D enviroment with obstacles.
 
 The solution implements a complete pipeline that:
 - Reads a map file containing obstacles.
