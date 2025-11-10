@@ -90,7 +90,7 @@ def plotar_mapa_completo(mapa, grafo, arvore=None, caminho=None, salvar=False, n
                markeredgewidth=2, label='Objetivo', zorder=6, linestyle='none') 
    
     bounds = mapa.get_bounds()
-    margin = 50
+    margin = 100
     ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
     ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
     
@@ -177,7 +177,7 @@ def plotar_apenas_obstaculos(mapa, salvar=False, nome_arquivo='obstaculos.png'):
     
     ax.legend()
     bounds = mapa.get_bounds()
-    margin = 10
+    margin = 100
     ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
     ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
     
@@ -201,7 +201,7 @@ def plotar_comparacao(mapa, grafo, arvore, caminho, salvar=False, nome_arquivo='
         ax.grid(True, alpha=0.3)
         ax.set_title(title, fontsize=12, fontweight='bold')
         bounds = mapa.get_bounds()
-        margin = 10
+        margin = 100
         ax.set_xlim(bounds[0] - margin, bounds[2] + margin)
         ax.set_ylim(bounds[1] - margin, bounds[3] + margin)
         ax.invert_yaxis()                                               #arruma o coisa contrario

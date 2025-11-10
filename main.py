@@ -1,3 +1,4 @@
+import os 
 from Mapas.Leitura import read_file_map, Vertex
 from Mapas.GrafoVisibilidade import create_visibility_graph
 from Mapas.Plotar import plotar_mapa_completo, plotar_apenas_obstaculos, plotar_comparacao
@@ -7,13 +8,13 @@ from Algoritmos.search_in_tree import search_in_tree, print_path
 from Algoritmos.VerticeMaisProximo import ler_posicao_usuario, corrigir_ponto_invalido, vertice_mais_proximo
 
 def clear_screen():
-    import os
+
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def start_menu():
     clear_screen()
     print("─────────────────────────────────────────────────────────")
-    print("  Graphs for Navigation in 2D maps")
+    print("   Graphs for Navigation in 2D maps")
     print("─────────────────────────────────────────────────────────")
     choice = input("1 - Start\n2 - Info\n3 - Quit\n").strip()
     print("─────────────────────────────────────────────────────────")
@@ -22,7 +23,7 @@ def start_menu():
 def info_function():
     msg = """
     ─────────────────────────────────────────────────────────
-              Graphs for Navigation in 2D Maps
+                      Graphs for Navigation in 2D Maps
     ─────────────────────────────────────────────────────────
     Welcome! This program lets you:
 
@@ -45,7 +46,7 @@ def main():
         choice = start_menu()
         if choice == '1':
             clear_screen()
-            archive = "Mapas\\ArquivoMapa.py"
+            archive = os.path.join("Mapas", "ArquivoMapa.py")
             generated_map = read_file_map(archive)
 
             if generated_map:
@@ -110,7 +111,7 @@ def main():
                 if cost is not None:
                     final_start_vertex = Vertex(final_start_pos[0], final_start_pos[1])
                     final_goal_vertex = Vertex(final_goal_pos[0], final_goal_pos[1])
-                   
+                    
                     cost += final_start_vertex.distance(new_start_vertex)
                     cost += final_goal_vertex.distance(new_goal_vertex)
                     
@@ -122,7 +123,7 @@ def main():
                 else:
                     print("\nIt was not possible to find a path between the points!")
                 
-             
+            
                 plotar_apenas_obstaculos(
                     mapa=generated_map, 
                     salvar=True, 
@@ -155,6 +156,7 @@ def main():
             print("Invalid option! Type 1, 2 or 3.")
 
 def choose_dots_mode():
+    print("\nWARNING: The map is originally 200x300 units large, but we added 100 of margin around it for better visualization in plots. If you select points above the margin, it might not show the goal or start in the plot.")
     print("\nChoose your operating mode:")
     print("1 - Use START and GOAL points from file")
     print("2 - Insert new START and GOAL points")
