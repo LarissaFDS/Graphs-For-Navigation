@@ -17,7 +17,7 @@ The project was developed in Python and requires a few external libraries.
 - Python 3
 - Libraries: `matplotlib` and `shapely`
 
-**Installing dependencies:**
+**Installing dependences:**
 
 ```bash
     pip install -r requirements.txt
@@ -42,7 +42,7 @@ This will open a interactive menu in the console:
 - Mode 1: Uses the start (`q_start`) and goal (`q_goal`) points defined in the `Mapas/AquivoMapa.py` file.
 - Mode 2: Allows the user to input new start and goal (x,y) coordinates trough the terminal.
 
-At the ende of the execution, the program will display the plots using `matplotlib` and save threee images in the root directory:
+At the end of the execution, the program will display the plots using `matplotlib` and save threee images in the root directory:
 - `mapa_obstaculos.png` (obstacles_map.png)
 - `mapa_completo.png` (complete_map.png)
 - `mapa_comparacao.png` (comparison_map.png)
